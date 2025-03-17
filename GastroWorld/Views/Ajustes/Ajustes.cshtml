@@ -1,0 +1,53 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<link href="~/css/ajustes.css" rel="stylesheet" />
+<style>
+    .fondo {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-image: url("https://lendan.com/wp-content/uploads/2019/01/influencia-alimentacion-piel.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        z-index: 1;
+        padding: 20px;
+        color: white;
+    }
+</style>
+<div class="fondo">
+    <form asp-action="Ajustes" method="post">
+        <div class="menu-container">
+            <div class="menu-content">
+                <h1 class="menu-title">Gastroworld <span>Tu cuenta</span></h1>
+
+                <div class="section">
+                    <div class="item">
+                        <input class="menu-input" required type="date" placeholder="tu hora de cocion">
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Informacion de contacto</h2>
+                    <div class="item">
+                        <input class="menu-input" required type="email" placeholder="Correo">
+                    </div>
+                    <div class="item">
+                        <input class="menu-input" required type="number" placeholder="telefono">
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" onclick="orderyourchange">
+                        Ordena tus cambios
+                    </button>
+                </div>
+
+            </div>
+            <div class="menu-image"></div>
+        </div>
+    </form>
+</div>

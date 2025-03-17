@@ -1,0 +1,53 @@
+# Visual Studio
+.vs/
+
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# ASP.NET specific
+appsettings*.json
+secrets.json
+
+# Package management
+node_modules/
+
+# Environment-specific files
+.env
+*.db
+
+# Resharper
+*.DotSettings.user
+
+# Rider
+.idea/
+*.iml
+
+# Miscellaneous
+*.bak
+*.cache
+*.tmp
+Thumbs.db
+.DS_Store
+
+# JetBrains Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Git
+*.orig
+*.rej
+
+# NuGet
+*.nupkg

@@ -1,0 +1,211 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zona Social</title>
+    <style>
+        .body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .comment {
+            margin-left: 20px;
+            border-left: 2px solid #ccc;
+            padding-left: 10px;
+        }
+
+        .deleteButton {
+            color: red;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .likeButton {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .fondo {
+            background-color:#CCCCCC;
+        }
+    </style>
+</head>
+<body class="fondo">
+
+    <div class="container">
+        <h1>Zona Social</h1>
+
+        <h3>Crear Publicación</h3>
+        <input type="text" id="username" placeholder="Nombre de usuario" required>
+        <textarea id="postContent" placeholder="Escribe tu publicación aquí..." required></textarea>
+        <input type="file" id="postImage" accept="image/*">
+        <button id="postButton">Publicar</button>
+
+        <h2>Publicaciones</h2>
+        <div id="posts"></div>
+    </div>
+
+    <script>
+        const postsContainer = document.getElementById('posts');
+        const postButton = document.getElementById('postButton');
+        const usernameInput = document.getElementById('username');
+
+        // Cargar publicaciones del almacenamiento local
+        function loadPosts() {
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            postsContainer.innerHTML = ''; // Limpiar publicaciones actuales
+            posts.reverse().forEach((post, index) => {
+                displayPost(post.username, post.content, post.image, post.comments, post.timestamp, index);
+            });
+        }
+
+        // Mostrar una publicación
+        function displayPost(username, content, image, comments, timestamp, index) {
+            const postDiv = document.createElement('div');
+            postDiv.classList.add('post');
+            postDiv.innerHTML = `<strong>${username}</strong>: ${content}
+                    <p><em>${new Date(timestamp).toLocaleString()}</em></p>
+                    ${image ? `<img src="${image}" alt="Imagen de publicación">` : ''}
+                    <div>
+                        <button class="likeButton" onclick="likePost(${index})">Me gusta</button>
+                        <span id="likeCount${index}">0</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Comentario..." class="commentInput">
+                        <button class="commentButton">Comentar</button>
+                    </div>
+                    <div class="comments"></div>
+                    <span class="deleteButton" onclick="deletePost(${index})">Eliminar</span>`;
+
+            postsContainer.appendChild(postDiv);
+            const commentsDiv = postDiv.querySelector('.comments');
+
+            // Mostrar comentarios existentes
+            comments.forEach(comment => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `<strong>${username}</strong>: ${comment}`;
+                commentsDiv.appendChild(commentDiv);
+            });
+
+            const commentButton = postDiv.querySelector('.commentButton');
+            commentButton.onclick = function () {
+                const commentInput = postDiv.querySelector('.commentInput');
+                const commentContent = commentInput.value;
+                if (commentContent) {
+                    const newCommentDiv = document.createElement('div');
+                    newCommentDiv.classList.add('comment');
+                    newCommentDiv.innerHTML = `<strong>${usernameInput.value}</strong>: ${commentContent}`;
+                    commentsDiv.appendChild(newCommentDiv);
+                    commentInput.value = '';
+
+                    // Guardar comentario en el almacenamiento local
+                    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+                    posts[index].comments.push(commentContent);
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                }
+            };
+        }
+
+        // Función para dar me gusta
+        function likePost(index) {
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            posts[index].likes = (posts[index].likes || 0) + 1; // Incrementar contador de me gusta
+            localStorage.setItem('posts', JSON.stringify(posts));
+            document.getElementById(`likeCount${index}`).textContent = posts[index].likes; // Actualizar visualmente
+        }
+
+        // Función para eliminar una publicación
+        function deletePost(index) {
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            posts.splice(index, 1); // Eliminar la publicación del array
+            localStorage.setItem('posts', JSON.stringify(posts)); // Actualizar el almacenamiento local
+            refreshPosts(); // Refrescar la vista
+        }
+
+        // Refrescar la vista de publicaciones
+        function refreshPosts() {
+            postsContainer.innerHTML = ''; // Limpiar publicaciones actuales
+            loadPosts(); // Cargar publicaciones nuevamente
+        }
+
+        postButton.onclick = function () {
+            const postContent = document.getElementById('postContent').value;
+            const postImage = document.getElementById('postImage').files[0];
+            const username = usernameInput.value;
+
+            if (postContent && username) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const post = {
+                        username: username,
+                        content: postContent,
+                        image: e.target.result, // Guardar la URL de la imagen
+                        comments: [],
+                        timestamp: Date.now(), // Guardar la hora de publicación
+                        likes: 0 // Inicializar contador de me gusta
+                    };
+                    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+                    posts.push(post);
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    displayPost(username, postContent, e.target.result, post.comments, post.timestamp, posts.length - 1); // Pasar el índice
+                    document.getElementById('postContent').value = '';
+                    document.getElementById('postImage').value = ''; // Limpiar el campo de imagen
+                };
+
+                if (postImage) {
+                    reader.readAsDataURL(postImage); // Leer la imagen como URL
+                } else {
+                    const post = {
+                        username: username,
+                        content: postContent,
+                        image: null,
+                        comments: [],
+                        timestamp: Date.now(),
+                        likes: 0
+                    };
+                    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+                    posts.push(post);
+                    localStorage.setItem('posts', JSON.stringify(posts));
+                    displayPost(username, postContent, null, post.comments, post.timestamp, posts.length - 1); // Pasar el índice
+                    document.getElementById('postContent').value = '';
+                }
+            } else {
+                alert('Por favor, escribe una publicación y proporciona un nombre de usuario.');
+            }
+        };
+
+        // Cargar publicaciones al iniciar
+        loadPosts();
+    </script>
+
+</body>
+</html>

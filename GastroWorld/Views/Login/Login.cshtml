@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "_Layout";
+}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Básico</title>
+<link href="~/css/login.css" rel="stylesheet" />
+    <style>
+
+    main {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-image: url("https://lendan.com/wp-content/uploads/2019/01/influencia-alimentacion-piel.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .content {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        color: black;
+    }
+    </style>
+<body >
+    <main class="content">
+    <div class="centrar">
+        <div class="login-container">
+            <div class="card-header">
+                <div class="text-header">Registro</div>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+    </main>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ usuario: username, password: password })
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                alert(`Inicio de sesión exitoso. Bienvenido ${data.user.LUsuario}`);
+                window.location.href = '/Pgprincipal2/Pgprincipal2';  
+            } else {
+                alert('Credenciales inválidas');
+            }
+        });
+    </script>
+
+</body>
+
