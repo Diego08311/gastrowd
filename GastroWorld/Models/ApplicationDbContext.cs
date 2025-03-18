@@ -57,5 +57,6 @@ namespace Gastroworld.Data
         //        .HasForeignKey(m => m.UsuarioReceptorId)
         //        .OnDelete(DeleteBehavior.Restrict);
         //}
+
     }
 }

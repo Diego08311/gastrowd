@@ -3,9 +3,6 @@
 *@
 @{
 }
-<!DOCTYPE html>
-<html lang="es">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zona Social</title>
@@ -58,7 +55,6 @@
             background-color:#CCCCCC;
         }
     </style>
-</head>
 <body>
     <div class="container">
         <h1>Zona Social</h1>
@@ -92,18 +88,18 @@
             const postDiv = document.createElement('div');
             postDiv.classList.add('post');
             postDiv.innerHTML = `<strong>${username}</strong>: ${content}
-                    <p><em>${new Date(timestamp).toLocaleString()}</em></p>
-                    ${image ? `<img src="${image}" alt="Imagen de publicación">` : ''}
-                    <div>
-                        <button class="likeButton" onclick="likePost(${index})">Me gusta</button>
-                        <span id="likeCount${index}">0</span>
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Comentario..." class="commentInput">
-                        <button class="commentButton">Comentar</button>
-                    </div>
-                    <div class="comments"></div>
-                    <span class="deleteButton" onclick="deletePost(${index})">Eliminar</span>`;
+                            <p><em>${new Date(timestamp).toLocaleString()}</em></p>
+                            ${image ? `<img src="${image}" alt="Imagen de publicación">` : ''}
+                            <div>
+                                <button class="likeButton" onclick="likePost(${index})">Me gusta</button>
+                                <span id="likeCount${index}">0</span>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="Comentario..." class="commentInput">
+                                <button class="commentButton">Comentar</button>
+                            </div>
+                            <div class="comments"></div>
+                            <span class="deleteButton" onclick="deletePost(${index})">Eliminar</span>`;
 
             postsContainer.appendChild(postDiv);
             const commentsDiv = postDiv.querySelector('.comments');
@@ -208,4 +204,3 @@
     </script>
 
 </body>
-</html>

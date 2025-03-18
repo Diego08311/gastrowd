@@ -7,23 +7,6 @@
 <link href="~/css/login.css" rel="stylesheet" />
     <style>
 
-    main {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        background-image: url("https://lendan.com/wp-content/uploads/2019/01/influencia-alimentacion-piel.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-
-    .content {
-        position: relative;
-        z-index: 1;
-        padding: 20px;
-        color: black;
-    }
     </style>
 <body >
     <main class="content">
@@ -42,6 +25,10 @@
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit">Entrar</button>
+                <div>
+                    <br />
+                    <a asp-area="" asp-controller="Registro" asp-action="Registro" class="letra">No tienes cuenta?Registrate</a>
+                </div>
             </form>
         </div>
     </div>

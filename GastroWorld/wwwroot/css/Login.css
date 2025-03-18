@@ -64,3 +64,24 @@ button {
 .centrar {
     text-align: center;
 }
+main {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url("https://lendan.com/wp-content/uploads/2019/01/influencia-alimentacion-piel.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    color: black;
+}
+
+.letra {
+    color: black;
+}
