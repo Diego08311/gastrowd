@@ -5,6 +5,7 @@ using GastroWorld.Models.IModel;
 using GastroWorld.Models.Repositories;
 using GastroWorld.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 
 //ConexionBd
 var builder = WebApplication.CreateBuilder(args);
