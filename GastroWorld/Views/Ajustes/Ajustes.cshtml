@@ -26,28 +26,34 @@
                 <h1 class="menu-title">Gastroworld <span>Tu cuenta</span></h1>
 
                 <div class="section">
-                    <div class="item">
-                        <input class="menu-input" required type="date" placeholder="tu hora de cocion">
-                    </div>
+                    <label for="nombre" class="input-label">Nombre</label>
+                    <input id="nombre" class="menu-input" required type="text" placeholder="Ingrese su nombre">
                 </div>
 
                 <div class="section">
-                    <h2 class="section-title">Informacion de contacto</h2>
-                    <div class="item">
-                        <input class="menu-input" required type="email" placeholder="Correo">
-                    </div>
-                    <div class="item">
-                        <input class="menu-input" required type="number" placeholder="telefono">
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" onclick="orderyourchange">
-                        Ordena tus cambios
-                    </button>
+                    <label for="correo" class="input-label">Correo Electrónico</label>
+                    <input id="correo" class="menu-input" required type="email" placeholder="Ingrese su correo">
                 </div>
 
+                <div class="section">
+                    <label for="contrasena" class="input-label">Contraseña</label>
+                    <input id="contrasena" class="menu-input" required type="password" placeholder="Ingrese su contraseña">
+                </div>
+
+                <div class="section">
+                    <label for="userType" class="input-label">Tipo de Usuario</label>
+                    <select required class="menu-input" name="userType" id="userType">
+                        <option value="Chef">Chef</option>
+                        <option value="Usuario">Usuario</option>
+                        <option value="Empresa">Empresa</option>
+                    </select>
+                </div>
+
+                <div class="button-containe">
+                    <button class="boton" type="submit">Guardar cambios</button>
+                </div>
             </div>
-            <div class="menu-image"></div>
+            <div class="menu-image" style="background: url('../imagenes/ajustes-cuenta.jpg') no-repeat center center/cover;"></div>
         </div>
     </form>
 </div>

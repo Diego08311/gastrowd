@@ -3,6 +3,7 @@
 }
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Login Básico</title>
 <link href="~/css/login.css" rel="stylesheet" />
     <style>
@@ -53,7 +54,12 @@
                 alert(`Inicio de sesión exitoso. Bienvenido ${data.user.LUsuario}`);
                 window.location.href = '/Pgprincipal2/Pgprincipal2';  
             } else {
-                alert('Credenciales inválidas');
+                    Swal.fire({
+                    icon: 'warning',
+                    title: '¡Algo pusiste mal!',
+                    text: 'no se encontro su usuario.',
+                    confirmButtonColor: '#007bff'
+                });
             }
         });
     </script>

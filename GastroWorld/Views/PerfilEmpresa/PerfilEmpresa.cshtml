@@ -3,32 +3,19 @@
 *@
 @{
 }
-<<!DOCTYPE html>
+<
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario Personalizable</title>
+    <title>Perfil de Empresa Personalizable</title>
     <link href="~/css/perfil.css" rel="stylesheet" />
     <style>
 
-        .fondo {
-            margin: 0;
-            padding: 0;
-            height: auto;
-            background-image: url("https://lendan.com/wp-content/uploads/2019/01/influencia-alimentacion-piel.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-         
-            z-index: 1;
-            padding: 20px;
-            color: black;
-        }
     </style>
 </head>
-<div class="fondo">
+}<body>
     <div class="container">
         <div class="cover-container">
             <img id="coverImage" class="cover-image" src="https://via.placeholder.com/940x350/1877f2/ffffff" alt="Imagen de Portada">
@@ -36,27 +23,35 @@
 
         <div class="profile-header">
             <div class="profile-picture-container">
-                <img id="profileImage" src="https://via.placeholder.com/180" alt="Imagen de Perfil">
+                <img id="profileImage" src="https://via.placeholder.com/180" alt="Logo de Empresa">
             </div>
             <div class="profile-info-container">
-                <h1 id="username" class="profile-name">Nombre de Usuario</h1>
+                <h1 id="username" class="profile-name">Nombre de Empresa</h1>
                 <div class="personal-info">
                     <div class="info-item">
-                        <div class="info-icon">📅</div>
-                        <span id="ageDisplay">Edad: No especificada</span>
+                        <div class="info-icon">🏢</div>
+                        <span id="tipoEmpresaDisplay">Tipo de Empresa: No especificada</span>
                     </div>
                     <div class="info-item">
                         <div class="info-icon">📍</div>
                         <span id="locationDisplay">Ubicación: No especificada</span>
                     </div>
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <span id="contactoDisplay">Contacto: No especificado</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🌐</div>
+                        <span id="sitioWebDisplay">Sitio Web: No especificado</span>
+                    </div>
                     <div class="content-section">
-            <h2 class="section-title">Sobre mí</h2>
-            <p id="aboutMeDisplay">Descripción breve sobre el usuario.</p>
-        </div>
+                        <h2 class="section-title">Sobre la Empresa</h2>
+                        <p id="aboutMeDisplay">Descripción breve sobre la empresa, servicios y productos ofrecidos.</p>
+                    </div>
                 </div>
                 <div class="button-container">
                     <button class="blue-button" onclick="toggleEditForm()">Editar Perfil</button>
-                    <button class="switch-button" onclick="toggleSwitchUserModal()">Cambiar Usuario</button>
+                    <button class="switch-button" onclick="toggleSwitchUserModal()">Cambiar Empresa</button>
                     <button class="delete-button" onclick="deleteProfile()">Eliminar Perfil</button>
                 </div>
             </div>
@@ -68,21 +63,45 @@
 
         <div id="editForm" class="modal">
             <div class="modal-content">
-                <h2 class="section-title">Personaliza tu Perfil</h2>
+                <h2 class="section-title">Personaliza el Perfil de Empresa</h2>
                 <div class="form-group">
-                    <label for="newUsername">Nombre de Usuario:</label>
-                    <input type="text" id="newUsername" placeholder="Ingrese su nombre de usuario">
+                    <label for="newUsername">Nombre de Empresa:</label>
+                    <input type="text" id="newUsername" placeholder="Ingrese el nombre de su empresa">
                 </div>
                 <div class="form-group">
-                    <label for="userAge">Edad:</label>
-                    <input type="number" id="userAge" placeholder="Ingrese su edad">
+                    <label for="tipoEmpresa">Tipo de Empresa:</label>
+                    <select id="tipoEmpresa">
+                        <option value="">Seleccione una opción</option>
+                        <option value="Restaurante">Restaurante</option>
+                        <option value="Cafetería">Cafetería</option>
+                        <option value="Panadería">Panadería</option>
+                        <option value="Catering">Catering</option>
+                        <option value="Escuela de Cocina">Escuela de Cocina</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group" id="otroTipoContainer" style="display: none;">
+                    <label for="otroTipo">Especifique:</label>
+                    <input type="text" id="otroTipo" placeholder="Especifique el tipo de empresa">
                 </div>
                 <div class="form-group">
                     <label for="userLocation">Ubicación:</label>
-                    <input type="text" id="userLocation" placeholder="Ingrese su ubicación">
+                    <input type="text" id="userLocation" placeholder="Dirección de la empresa">
                 </div>
                 <div class="form-group">
-                    <label for="profileImageInput">Imagen de Perfil:</label>
+                    <label for="contactoEmpresa">Contacto:</label>
+                    <input type="text" id="contactoEmpresa" placeholder="Teléfono / Email de contacto">
+                </div>
+                <div class="form-group">
+                    <label for="sitioWeb">Sitio Web:</label>
+                    <input type="text" id="sitioWeb" placeholder="URL del sitio web (opcional)">
+                </div>
+                <div class="form-group">
+                    <label for="horariosAtencion">Horarios de Atención:</label>
+                    <input type="text" id="horariosAtencion" placeholder="Ej: Lunes a Viernes 9:00 - 18:00">
+                </div>
+                <div class="form-group">
+                    <label for="profileImageInput">Logo de Empresa:</label>
                     <input type="file" id="profileImageInput" accept="image/*" onchange="loadFile(event, 'profileImage')">
                 </div>
                 <div class="form-group">
@@ -90,8 +109,8 @@
                     <input type="file" id="coverImageInput" accept="image/*" onchange="loadFile(event, 'coverImage')">
                 </div>
                 <div class="form-group">
-                    <label for="aboutMe">Sobre mí:</label>
-                    <textarea id="aboutMe" placeholder="Escribe algo sobre ti"></textarea>
+                    <label for="aboutMe">Sobre la Empresa y sus Servicios:</label>
+                    <textarea id="aboutMe" placeholder="Describa su empresa, productos, servicios, especialidades, etc."></textarea>
                 </div>
                 <div class="button-container">
                     <button class="blue-button" onclick="saveProfile()">Guardar Cambios</button>
@@ -104,7 +123,7 @@
             <div class="modal-content">
                 <h2 class="section-title">Cambiar Usuario</h2>
                 <div class="switch-user-form">
-                    <input type="text" id="switchUser" placeholder="Ingrese el nombre de usuario">
+                    <input type="text" id="switchUser" placeholder="Ingrese el nombre del usuario">
                     <button class="blue-button" onclick="switchUser()">Cambiar</button>
                 </div>
                 <div class="button-container" style="justify-content: flex-end; margin-top: 20px;">
@@ -114,23 +133,38 @@
         </div>
 
         <div class="posts">
-            
             <div id="userPosts"></div>
         </div>
     </div>
 
     <script>
+        // Mostrar/ocultar campo de "Otro tipo" según la selección
+        document.getElementById('tipoEmpresa').addEventListener('change', function() {
+            const otroContainer = document.getElementById('otroTipoContainer');
+            if (this.value === 'Otro') {
+                otroContainer.style.display = 'block';
+            } else {
+                otroContainer.style.display = 'none';
+            }
+        });
+
         // Cargar perfil desde localStorage
         function loadProfile(username) {
             const profiles = JSON.parse(localStorage.getItem('allProfiles')) || {};
             const profile = profiles[username] || {};
 
-            document.getElementById('username').textContent = profile.username || 'Nombre de Usuario';
-            document.getElementById('aboutMeDisplay').textContent = profile.aboutMe || 'Descripción breve sobre el usuario.';
-            
-            // Cargar edad y ubicación
-            document.getElementById('ageDisplay').textContent = profile.age ? `Edad: ${profile.age}` : 'Edad: No especificada';
-            document.getElementById('locationDisplay').textContent = profile.location ? `Ubicación: ${profile.location}` : 'Ubicación: No especificada';
+            document.getElementById('username').textContent = profile.username || 'Nombre de Empresa';
+            document.getElementById('aboutMeDisplay').textContent = profile.aboutMe || 'Descripción breve sobre la empresa.';
+
+            // Cargar información de empresa
+            document.getElementById('tipoEmpresaDisplay').textContent = profile.tipoEmpresa ? 
+                `Tipo de Empresa: ${profile.tipoEmpresa}` : 'Tipo de Empresa: No especificada';
+            document.getElementById('locationDisplay').textContent = profile.location ? 
+                `Ubicación: ${profile.location}` : 'Ubicación: No especificada';
+            document.getElementById('contactoDisplay').textContent = profile.contacto ? 
+                `Contacto: ${profile.contacto}` : 'Contacto: No especificado';
+            document.getElementById('sitioWebDisplay').textContent = profile.sitioWeb ? 
+                `Sitio Web: ${profile.sitioWeb}` : 'Sitio Web: No especificado';
 
             if (profile.profileImage) {
                 document.getElementById('profileImage').src = profile.profileImage;
@@ -142,14 +176,29 @@
 
             // Pre-llenar el formulario de edición
             document.getElementById('newUsername').value = profile.username || '';
-            document.getElementById('userAge').value = profile.age || '';
+            
+            // Manejar el tipo de empresa
+            if (profile.tipoEmpresa) {
+                if (['Restaurante', 'Cafetería', 'Panadería', 'Catering', 'Escuela de Cocina'].includes(profile.tipoEmpresa)) {
+                    document.getElementById('tipoEmpresa').value = profile.tipoEmpresa;
+                    document.getElementById('otroTipoContainer').style.display = 'none';
+                } else {
+                    document.getElementById('tipoEmpresa').value = 'Otro';
+                    document.getElementById('otroTipo').value = profile.tipoEmpresa;
+                    document.getElementById('otroTipoContainer').style.display = 'block';
+                }
+            }
+            
             document.getElementById('userLocation').value = profile.location || '';
+            document.getElementById('contactoEmpresa').value = profile.contacto || '';
+            document.getElementById('sitioWeb').value = profile.sitioWeb || '';
+            document.getElementById('horariosAtencion').value = profile.horarios || '';
             document.getElementById('aboutMe').value = profile.aboutMe || '';
 
-            loadUserPosts(username); // Cargar publicaciones del usuario
+            loadUserPosts(username); // Cargar publicaciones de la empresa
         }
 
-        // Cargar publicaciones del usuario
+        // Cargar publicaciones del usuario/empresa
         function loadUserPosts(username) {
             const posts = JSON.parse(localStorage.getItem('posts')) || [];
             const userPostsContainer = document.getElementById('userPosts');
@@ -159,15 +208,15 @@
                 if (post.username === username) {
                     const postDiv = document.createElement('div');
                     postDiv.classList.add('post');
-                    
+
                     // Obtener perfil para mostrar imagen de perfil
                     const profiles = JSON.parse(localStorage.getItem('allProfiles')) || {};
                     const profile = profiles[username] || {};
                     const profileImg = profile.profileImage || 'https://via.placeholder.com/40';
-                    
+
                     postDiv.innerHTML = `
                         <div class="post-header">
-                            <img src="${profileImg}" alt="Foto de perfil">
+                            <img src="${profileImg}" alt="Logo de empresa">
                             <div class="post-header-info">
                                 <h4 class="post-author">${post.username}</h4>
                                 <p class="post-time">${new Date(post.timestamp).toLocaleString()}</p>
@@ -178,7 +227,7 @@
                         </div>
                         ${post.image ? `<img src="${post.image}" alt="Imagen de publicación" class="post-image">` : ''}
                     `;
-                    
+
                     userPostsContainer.appendChild(postDiv);
                 }
             });
@@ -206,8 +255,17 @@
         function saveProfile() {
             const username = document.getElementById('newUsername').value || document.getElementById('username').textContent;
             const aboutMe = document.getElementById('aboutMe').value;
-            const age = document.getElementById('userAge').value;
+            
+            // Obtener tipo de empresa
+            let tipoEmpresa = document.getElementById('tipoEmpresa').value;
+            if (tipoEmpresa === 'Otro') {
+                tipoEmpresa = document.getElementById('otroTipo').value;
+            }
+            
             const location = document.getElementById('userLocation').value;
+            const contacto = document.getElementById('contactoEmpresa').value;
+            const sitioWeb = document.getElementById('sitioWeb').value;
+            const horarios = document.getElementById('horariosAtencion').value;
             const profileImage = document.getElementById('profileImage').src;
             const coverImage = document.getElementById('coverImage').src;
 
@@ -215,8 +273,11 @@
             profiles[username] = {
                 username: username,
                 aboutMe: aboutMe,
-                age: age,
+                tipoEmpresa: tipoEmpresa,
                 location: location,
+                contacto: contacto,
+                sitioWeb: sitioWeb,
+                horarios: horarios,
                 profileImage: profileImage,
                 coverImage: coverImage
             };
@@ -226,7 +287,7 @@
             toggleEditForm(); // Ocultar el formulario
         }
 
-        // Cambiar de usuario
+        // Cambiar de usuario/empresa
         function switchUser() {
             const newUsername = document.getElementById('switchUser').value;
             if (newUsername) {
@@ -243,7 +304,7 @@
             if (profiles[username]) {
                 delete profiles[username]; // Eliminar el perfil actual
                 localStorage.setItem('allProfiles', JSON.stringify(profiles));
-                alert('Perfil eliminado. Puedes crear uno nuevo.');
+                alert('Perfil de empresa eliminado. Puede crear uno nuevo.');
                 loadProfile(''); // Cargar un perfil vacío o por defecto
             }
         }
@@ -264,19 +325,18 @@
         window.onclick = function(event) {
             const editForm = document.getElementById('editForm');
             const switchUserModal = document.getElementById('switchUserModal');
-            
+
             if (event.target === editForm) {
                 editForm.style.display = "none";
             }
-            
+
             if (event.target === switchUserModal) {
                 switchUserModal.style.display = "none";
             }
         }
 
         // Cargar perfil al iniciar
-        loadProfile('Nombre de Usuario'); // Cargar el perfil por defecto al iniciar
-
+        loadProfile('Nombre de Empresa'); // Cargar el perfil por defecto al iniciar
     </script>
-</div>
+</body>
 </html>

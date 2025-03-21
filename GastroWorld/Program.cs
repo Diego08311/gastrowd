@@ -2,9 +2,11 @@
 using Gastroworld.Data;
 using GastroWorld.Models;
 using GastroWorld.Models.IModel;
+using GastroWorld.Models.Model;
 using GastroWorld.Models.Repositories;
 using GastroWorld.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Win32;
 
 //ConexionBd
