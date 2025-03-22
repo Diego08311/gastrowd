@@ -127,7 +127,7 @@
 
             document.getElementById('username').textContent = profile.username || 'Nombre de Usuario';
             document.getElementById('aboutMeDisplay').textContent = profile.aboutMe || 'Descripción breve sobre el usuario.';
-            
+
             // Cargar edad y ubicación
             document.getElementById('ageDisplay').textContent = profile.age ? `Edad: ${profile.age}` : 'Edad: No especificada';
             document.getElementById('locationDisplay').textContent = profile.location ? `Ubicación: ${profile.location}` : 'Ubicación: No especificada';
@@ -146,42 +146,56 @@
             document.getElementById('userLocation').value = profile.location || '';
             document.getElementById('aboutMe').value = profile.aboutMe || '';
 
-            loadUserPosts(username); // Cargar publicaciones del usuario
+            // Renombramos esta función para evitar el conflicto con el primer script
+            loadUserPostsInProfile(username);
         }
 
-        // Cargar publicaciones del usuario
-        function loadUserPosts(username) {
+        // Cargar publicaciones del usuario (renombrada para evitar conflictos)
+        function loadUserPostsInProfile(username) {
             const posts = JSON.parse(localStorage.getItem('posts')) || [];
             const userPostsContainer = document.getElementById('userPosts');
-            userPostsContainer.innerHTML = ''; // Limpiar publicaciones actuales
 
-            posts.reverse().forEach(post => {
-                if (post.username === username) {
-                    const postDiv = document.createElement('div');
-                    postDiv.classList.add('post');
-                    
-                    // Obtener perfil para mostrar imagen de perfil
-                    const profiles = JSON.parse(localStorage.getItem('allProfiles')) || {};
-                    const profile = profiles[username] || {};
-                    const profileImg = profile.profileImage || 'https://via.placeholder.com/40';
-                    
-                    postDiv.innerHTML = `
-                        <div class="post-header">
-                            <img src="${profileImg}" alt="Foto de perfil">
-                            <div class="post-header-info">
-                                <h4 class="post-author">${post.username}</h4>
-                                <p class="post-time">${new Date(post.timestamp).toLocaleString()}</p>
-                            </div>
-                        </div>
-                        <div class="post-content">
-                            ${post.content}
-                        </div>
-                        ${post.image ? `<img src="${post.image}" alt="Imagen de publicación" class="post-image">` : ''}
-                    `;
-                    
-                    userPostsContainer.appendChild(postDiv);
-                }
-            });
+            if (userPostsContainer) {
+                userPostsContainer.innerHTML = ''; // Limpiar publicaciones actuales
+
+                // Ordenamos las publicaciones por timestamp (más recientes primero)
+                const sortedPosts = [...posts].sort((a, b) => (b.timestamp || b.id) - (a.timestamp || a.id));
+
+                sortedPosts.forEach(post => {
+                    // Usamos username para compatibilidad con ambos scripts
+                    if (post.username === username) {
+                        const postDiv = document.createElement('div');
+                        postDiv.classList.add('post');
+
+                        // Obtener perfil para mostrar imagen de perfil
+                        const profiles = JSON.parse(localStorage.getItem('allProfiles')) || {};
+                        const profile = profiles[username] || {};
+                        const profileImg = profile.profileImage || 'https://via.placeholder.com/40';
+
+                        // Usamos message || content para compatibilidad con ambos scripts
+                        // Usamos imageUrl || image para compatibilidad con ambos scripts
+                        const postContent = post.content || post.message || '';
+                        const postImage = post.image || post.imageUrl || '';
+                        const postTime = post.timestamp ? new Date(post.timestamp).toLocaleString() : 'Fecha desconocida';
+
+                        postDiv.innerHTML = `
+                                    <div class="post-header">
+                                        <img src="${profileImg}" alt="Foto de perfil">
+                                        <div class="post-header-info">
+                                            <h4 class="post-author">${post.username}</h4>
+                                            <p class="post-time">${postTime}</p>
+                                        </div>
+                                    </div>
+                                    <div class="post-content">
+                                        ${postContent}
+                                    </div>
+                                    ${postImage ? `<img src="${postImage}" alt="Imagen de publicación" class="post-image">` : ''}
+                                `;
+
+                        userPostsContainer.appendChild(postDiv);
+                    }
+                });
+            }
         }
 
         // Cargar archivo como URL base64
@@ -189,7 +203,7 @@
             const file = event.target.files[0];
             const reader = new FileReader();
 
-            reader.onload = function() {
+            reader.onload = function () {
                 if (imageType === 'profileImage') {
                     document.getElementById('profileImage').src = reader.result;
                 } else if (imageType === 'coverImage') {
@@ -261,21 +275,23 @@
         }
 
         // Cerrar modales si se hace clic fuera de ellos
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const editForm = document.getElementById('editForm');
             const switchUserModal = document.getElementById('switchUserModal');
-            
+
             if (event.target === editForm) {
                 editForm.style.display = "none";
             }
-            
+
             if (event.target === switchUserModal) {
                 switchUserModal.style.display = "none";
             }
         }
 
         // Cargar perfil al iniciar
-        loadProfile('Nombre de Usuario'); // Cargar el perfil por defecto al iniciar
+        document.addEventListener("DOMContentLoaded", function () {
+            loadProfile('Nombre de Usuario'); // Cargar el perfil por defecto al iniciar
+        });
 
     </script>
 </div>

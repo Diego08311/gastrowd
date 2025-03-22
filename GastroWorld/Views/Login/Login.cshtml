@@ -14,7 +14,7 @@
     <div class="centrar">
         <div class="login-container">
             <div class="card-header">
-                <div class="text-header">Registro</div>
+                <div class="text-header">Inicio sesion</div>
             </div>
             <form id="loginForm">
                 <div class="form-group">
@@ -51,10 +51,18 @@
 
             if (response.ok) {
                 const data = await response.json();
-                alert(`Inicio de sesión exitoso. Bienvenido ${data.user.LUsuario}`);
-                window.location.href = '/Pgprincipal2/Pgprincipal2';  
-            } else {
+                    // alert(`Inicio de sesión exitoso. Bienvenido ${data.user.LUsuario}`);
                     Swal.fire({
+                    icon: 'success',
+                    title: '¡Bienvenido!',
+                    text: 'Has iniciado sesión correctamente.',
+                    confirmButtonText: 'Continuar',
+                    allowOutsideClick: false // Evita que el usuario lo cierre haciendo clic fuera
+                }).then(() => {
+                    window.location.href = '/Pgprincipal2/Pgprincipal2';
+                });
+            } else {
+                Swal.fire({
                     icon: 'warning',
                     title: '¡Algo pusiste mal!',
                     text: 'no se encontro su usuario.',
