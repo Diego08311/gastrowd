@@ -1,10 +1,17 @@
-﻿@*
+﻿@model Gastroworld.Models.Model.Usuarios
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
 @{
 }
-<link href="~/css/ajustes.css" rel="stylesheet" />
+<link href="~/css/Ajustes.css" rel="stylesheet" />
 <style>
+    .color{
+        color:white;
+        text-align:center;
+    }
+
     .fondo {
         margin: 0;
         padding: 0;
@@ -16,44 +23,45 @@
         background-attachment: fixed;
         z-index: 1;
         padding: 20px;
-        color: white;
+        color: black;
     }
 </style>
 <div class="fondo">
-    <form asp-action="Ajustes" method="post">
         <div class="menu-container">
-            <div class="menu-content">
-                <h1 class="menu-title">Gastroworld <span>Tu cuenta</span></h1>
+            <h2 class="menu-title">Editar <span>Perfil</span></h2>
 
-                <div class="section">
-                    <label for="nombre" class="input-label">Nombre</label>
-                    <input id="nombre" class="menu-input" required type="text" placeholder="Ingrese su nombre">
-                </div>
+            <form asp-controller="Ajustes" asp-action="ActualizarUsuario" method="post" class="menu-content">
 
-                <div class="section">
-                    <label for="correo" class="input-label">Correo Electrónico</label>
-                    <input id="correo" class="menu-input" required type="email" placeholder="Ingrese su correo">
-                </div>
+                <label class="input-label">Nombre</label>
+                <input type="text" name="nombre" asp-for="nombre" class="menu-input" required />
 
-                <div class="section">
-                    <label for="contrasena" class="input-label">Contraseña</label>
-                    <input id="contrasena" class="menu-input" required type="password" placeholder="Ingrese su contraseña">
-                </div>
+                <label class="input-label">Correo Electrónico</label>
+                <input type="email" name="email" asp-for="email" class="menu-input" required />
 
-                <div class="section">
-                    <label for="userType" class="input-label">Tipo de Usuario</label>
-                    <select required class="menu-input" name="userType" id="userType">
-                        <option value="Chef">Chef</option>
-                        <option value="Usuario">Usuario</option>
-                        <option value="Empresa">Empresa</option>
-                    </select>
-                </div>
+                <label class="input-label">Contraseña</label>
+                <input type="password" name="password" asp-for="password" class="menu-input" required />
 
-                <div class="button-containe">
-                    <button class="boton" type="submit">Guardar cambios</button>
+                <label class="input-label">Tipo de Usuario</label>
+                <select name="tipo_usuario" asp-for="tipo_usuario" class="menu-input">
+                    <option value="Usuario">Usuario</option>
+                    <option value="Empresa">Empresa</option>
+                </select>
+
+                <div class="button-container">
+                    <button class="botton" type="submit">Guardar cambios</button>
                 </div>
-            </div>
-            <div class="menu-image" style="background: url('../imagenes/ajustes-cuenta.jpg') no-repeat center center/cover;"></div>
+            </form>
+
+            @if (ViewBag.Mensaje != null)
+            {
+                <p style="color: green; text-align: center;">@ViewBag.Mensaje</p>
+            }
+
+            @if (ViewBag.Error != null)
+            {
+                <p style="color: red; text-align: center;">@ViewBag.Error</p>
+            }
         </div>
-    </form>
+    </div>
+
 </div>

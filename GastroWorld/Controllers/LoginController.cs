@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using GastroWorld.Models.NewFolder;
 using GastroWorld.Models.IModel;
+using Microsoft.AspNetCore.Http;
 
 
 namespace GastroWorld.Controllers
@@ -20,10 +21,13 @@ namespace GastroWorld.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthController(IUsuarioRepository usuarioRepository) 
+        public AuthController(IUsuarioRepository usuarioRepository, IHttpContextAccessor httpContextAccessor) 
         {
             _usuarioRepository = usuarioRepository;
+            _httpContextAccessor = httpContextAccessor;
+
         }
 
 
@@ -39,6 +43,9 @@ namespace GastroWorld.Controllers
                 return Unauthorized(new { message = "Credenciales inválidas" });
             }
             Console.WriteLine($"Usuario encontrado: {user.usuario}");
+
+            _httpContextAccessor.HttpContext.Session.SetInt32("id_usuario", user.id_usuario);
+
             return Ok(new
             {
                 message = "Inicio de sesión exitoso",

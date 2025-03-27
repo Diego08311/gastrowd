@@ -16,6 +16,9 @@ builder.Services.AddControllers();
 builder.Services.AddAuthentication(); 
 builder.Services.AddAuthorization();
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession(); // Habilita sesiones en la aplicación
+builder.Services.AddHttpContextAccessor(); // Permite acceder al contexto HTTP
+
 
 
 // 🔹 Agregar conexión a la base de datos MySQL antes de `builder.Build()`
@@ -50,6 +53,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession(); // Activa sesiones en la aplicación
 
 
 app.MapControllerRoute(
