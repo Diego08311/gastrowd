@@ -3,36 +3,229 @@
 *@
 @{
 }
-<link href="~/css/sobrenosotros.css" rel="stylesheet" />
-<style>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de Nosotros</title>
+    <link href="~/css/sobrenosotros.css" rel="stylesheet" />
+    <style>
 
-</style>
-<link rel="stylesheet" href="~/css/SobreNosotros.css">
-<div class="fondo">
-<div class="contenedor ">
-    <div class="card">
-        <div class="image"></div>
-        <div class="content">
-                <span class="title">
-                    <h1>GastroWord</h1>
-                </span>
-            <p class="desc">
-                    GastroWord es una plataforma digital que organiza y facilita el acceso a información sobre gastronomía, 
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 500px;
+            background-color: #DEDEDE;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            .about-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: black;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .team-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            width: 250px;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+            .team-member:hover {
+                transform: translateY(-10px);
+            }
+
+        .member-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+        }
+
+            .member-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: #3498db;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-image {
+            height: 300px;
+        }
+
+
+
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 500px;
+            background-color: #DEDEDE;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            .about-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        .fondo{
+            background:#DEDEDE;
+        }
+    </style>
+</head>
+<body class="fondo">
+    <div class="body">
+        <div class="header">
+            <h1>Acerca de Nosotros</h1>
+            <p>Conectando apasionados a través de experiencias, conocimiento y una visión compartida por nuestro campo.</p>
+        </div>
+
+        <section class="mission-section">
+            <div class="mission-content">
+                <h2>Nuestra Misión</h2>
+                <p>
+                    GastroWord es una plataforma digital que organiza y facilita el acceso a información sobre gastronomía,
+                    nutrición y cocina. Ofrece recetas accesibles, consejos de compra y técnicas básicas para que cualquier persona,
+                    sin importar su experiencia, pueda mejorar su alimentación de manera saludable y económica autosustentable.
+                <p >
+                    GastroWord es una plataforma digital que organiza y facilita el acceso a información sobre gastronomía,
                     nutrición y cocina. Proporciona recetas accesibles, consejos de compra y técnicas básicas para que cualquier persona,
                     sin importar su nivel de experiencia, pueda mejorar su alimentación de manera saludable y económicamente sostenible.
                     <br />
                     Nuestro Equipo:
                     <br />
                     • Juan Sebastián Sánchez, Diego Moreno y Víctor Díaz: Somos Programadores junior con una gran pasión por la tecnología y
-                     la gastronomía, estamos dedicados al desarrollo de GastroWord para que sea intuitiva, accesible y funcional para todos.
-                     <br />
-                    ¡Gracias por registrarte en nuestra página! Tu apoyo es fundamental para que podamos seguir mejorando y 
+                    la gastronomía, estamos dedicados al desarrollo de GastroWord para que sea intuitiva, accesible y funcional para todos.
+                    <br />
+                    ¡Gracias por registrarte en nuestra página! Tu apoyo es fundamental para que podamos seguir mejorando y
                     ofreciendo contenido de calidad.
-            </p>
-                <div class="image-container">
-                    <img src="~/imagenes/1.jpg" />
+                </p>
+                </p>
+                <p>Buscamos democratizar el conocimiento, haciendo que recursos de todo el mundo sean accesibles para todos, independientemente de su nivel de experiencia o procedencia.</p>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <h2>Nuestros Valores</h2>
+            <div class="values-container">
+                <div class="team-member">
+                    <div class="value-icon">
+                        <img src="/api/placeholder/35/35" alt="Pasión">
+                    </div>
+                    <h3>Pasión</h3>
+                    <p>Amamos lo que hacemos en todas sus formas y queremos compartir esa pasión con el mundo entero.</p>
                 </div>
-        </div>
-    </div>
-</div>
-</div>
+
+                <div class="team-member">
+                    <div class="value-icon">
+                        <img src="/api/placeholder/35/35" alt="Comunidad">
+                    </div>
+                    <h3>Comunidad</h3>
+                    <p>Creemos en el poder de la comunidad para inspirar, enseñar y apoyar a todos los miembros en su camino.</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="value-icon">
+                        <img src="/api/placeholder/35/35" alt="Innovación">
+                    </div>
+                    <h3>Innovación</h3>
+                    <p>Buscamos constantemente nuevas formas de mejorar la experiencia a través de la tecnología y nuevas ideas.</p>
+                </div>
+            </div>
+        </section>
+        <section class="team-section">
+            <h2>Nuestro Equipo</h2>
+            <p>Conoce a las personas que hacen posible Todo esto.</p>
+
+            <div class="team-members">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="~/imagenes/chatgpt image 29 mar 2025, 08_12_43 p.m..png" />
+                    </div>
+                    <div class="member-name">Victor Dias</div>
+                    <div class="member-role">BACK</div>
+                    <p>Victor es el cerebro detrás de nuestras parte Back de nuestra aplicacion wed.</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="~/imagenes/chatgpt image 29 mar 2025, 08_37_12 p.m..png" />
+                    </div>
+                    <div class="member-name">Diego Moreno</div>
+                    <div class="member-role">FROM</div>
+                    <p>Diego es el cerebro detrás de nuestras parte visual de nuestra aplicacion wed.</p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="~/imagenes/chatgpt image 29 mar 2025, 08_16_03 p.m..png" />
+                    </div>
+                    <div class="member-name">Sebastian Sanchez</div>
+                    <div class="member-role">Diseñador</div>
+                    <p>Sebastian aporta creatividad y estilo a nuestro proyectos.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

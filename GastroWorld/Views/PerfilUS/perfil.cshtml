@@ -8,9 +8,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario Personalizable</title>
-    <link href="~/css/perfil.css" rel="stylesheet" />
+    <title>Perfil de Usuario - Gastronomía</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #ff6b35;
+            --secondary-color: #f7c59f;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+            --border-color: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .profile-cover {
+            width: 100%;
+            height: 200px;
+            background-image: url('/api/placeholder/1200/200');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 60px;
+        }
+        
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            background-color: var(--secondary-color);
+            object-fit: cover;
+            position: absolute;
+            top: 130px;
+        }
+        
+        .profile-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .profile-username {
+            color: #777;
+            margin-bottom: 10px;
+        }
+        
+        .profile-bio {
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        
+        .profile-stats {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            margin: 0 20px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .stat-label {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .boton {
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .boton-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .boton-primary:hover {
+            background-color: #e55a29;
+        }
+        
+        .boton-secondary {
+            background-color: #f0f0f0;
+            color: var(--text-color);
+        }
+        
+        .boton-secondary:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 20px;
+        }
+        
+        .profile-sidebar {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .sidebar-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .specialty-item, .badge-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .specialty-icon, .badge-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #fff;
+        }
+        
+        .badge-icon {
+            background-color: #ffd700;
+        }
+        
+        .specialty-info, .badge-info {
+            flex: 1;
+        }
+        
+        .specialty-name, .badge-name {
+            font-weight: 600;
+        }
+        
+        .specialty-desc, .badge-desc {
+            font-size: 13px;
+            color: #777;
+        }
+        
+        .profile-main {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .posts-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+        
+        .post-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .post-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .post-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .post-info {
+            flex: 1;
+        }
+        
+        .post-text {
+            margin-bottom: 5px;
+        }
+        
+        .post-text a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .post-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .post-time {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .post-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .edit-profile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 16px;
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
         .fondo {
             margin: 0;
@@ -21,278 +380,322 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-         
-            z-index: 1;
             padding: 20px;
-            color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
     </style>
 </head>
-<div class="fondo">
+<body>
     <div class="container">
-        <div class="cover-container">
-            <img id="coverImage" class="cover-image" src="https://via.placeholder.com/940x350/1877f2/ffffff" alt="Imagen de Portada">
-        </div>
-
         <div class="profile-header">
-            <div class="profile-picture-container">
-                <img id="profileImage" src="https://via.placeholder.com/180" alt="Imagen de Perfil">
+            <div class="profile-cover"></div>
+            <img src="/api/placeholder/150/150" alt="Foto de perfil" class="profile-avatar">
+            <div class="profile-info">
+                <h1 class="profile-name">Usuario Nuevo</h1>
+                <p class="profile-username">Alias</p>
+                <p class="profile-bio">Describe que te gusta de la gastronomia,cocina,restaurantes, etc..</p>
             </div>
-            <div class="profile-info-container">
-                <h1 id="username" class="profile-name">Nombre de Usuario</h1>
-                <div class="personal-info">
-                    <div class="info-item">
-                        <div class="info-icon">📅</div>
-                        <span id="ageDisplay">Edad: No especificada</span>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Recetas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Colecciones</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Seguidores</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Siguiendo</div>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="boton boton-primary" id="edit-profile-btn">Editar perfil</button>
+            </div>
+        </div>
+        
+        <div class="profile-content">
+            <div class="profile-sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title"><i class="fas fa-utensils"></i> Guardados</h3>
+                   
+                    <div class="specialty-item">
+                        <div class="specialty-icon"><i class="fas fa-pizza-slice"></i></div>
+                        <div class="specialty-info">
+                            <div class="specialty-name">Cocina Mediterránea</div>
+                            <div class="specialty-desc">3 años de experiencia</div>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <div class="info-icon">📍</div>
-                        <span id="locationDisplay">Ubicación: No especificada</span>
+                    <div class="specialty-item">
+                        <div class="specialty-icon"><i class="fas fa-pepper-hot"></i></div>
+                        <div class="specialty-info">
+                            <div class="specialty-name">Cocina Mexicana</div>
+                            <div class="specialty-desc">2 años de experiencia</div>
+                        </div>
                     </div>
-                    <div class="content-section">
-            <h2 class="section-title">Sobre mí</h2>
-            <p id="aboutMeDisplay">Descripción breve sobre el usuario.</p>
-        </div>
                 </div>
-                <div class="button-container">
-                    <button class="blue-button" onclick="toggleEditForm()">Editar Perfil</button>
-                    <button class="switch-button" onclick="toggleSwitchUserModal()">Cambiar Usuario</button>
-                    <button class="delete-button" onclick="deleteProfile()">Eliminar Perfil</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="profile-navigation">
-            <div class="nav-item active">Publicaciones</div>
-        </div>
-
-        <div id="editForm" class="modal">
-            <div class="modal-content">
-                <h2 class="section-title">Personaliza tu Perfil</h2>
-                <div class="form-group">
-                    <label for="newUsername">Nombre de Usuario:</label>
-                    <input type="text" id="newUsername" placeholder="Ingrese su nombre de usuario">
-                </div>
-                <div class="form-group">
-                    <label for="userAge">Edad:</label>
-                    <input type="number" id="userAge" placeholder="Ingrese su edad">
-                </div>
-                <div class="form-group">
-                    <label for="userLocation">Ubicación:</label>
-                    <input type="text" id="userLocation" placeholder="Ingrese su ubicación">
-                </div>
-                <div class="form-group">
-                    <label for="profileImageInput">Imagen de Perfil:</label>
-                    <input type="file" id="profileImageInput" accept="image/*" onchange="loadFile(event, 'profileImage')">
-                </div>
-                <div class="form-group">
-                    <label for="coverImageInput">Imagen de Portada:</label>
-                    <input type="file" id="coverImageInput" accept="image/*" onchange="loadFile(event, 'coverImage')">
-                </div>
-                <div class="form-group">
-                    <label for="aboutMe">Sobre mí:</label>
-                    <textarea id="aboutMe" placeholder="Escribe algo sobre ti"></textarea>
-                </div>
-                <div class="button-container">
-                    <button class="blue-button" onclick="saveProfile()">Guardar Cambios</button>
-                    <button class="switch-button" onclick="toggleEditForm()">Cancelar</button>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title"><i class="fas fa-award"></i> Insignias</h3>
+                    <div class="badge-item">
+                        <div class="badge-icon"><i class="fas fa-star"></i></div>
+                        <div class="badge-info">
+                            <div class="badge-name">Chef Estrella</div>
+                            <div class="badge-desc">100+ recetas populares</div>
+                        </div>
+                    </div>
+                    <div class="badge-item">
+                        <div class="badge-icon"><i class="fas fa-camera"></i></div>
+                        <div class="badge-info">
+                            <div class="badge-name">Fotógrafo Culinario</div>
+                            <div class="badge-desc">Fotos de alta calidad</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div id="switchUserModal" class="modal">
-            <div class="modal-content">
-                <h2 class="section-title">Cambiar Usuario</h2>
-                <div class="switch-user-form">
-                    <input type="text" id="switchUser" placeholder="Ingrese el nombre de usuario">
-                    <button class="blue-button" onclick="switchUser()">Cambiar</button>
-                </div>
-                <div class="button-container" style="justify-content: flex-end; margin-top: 20px;">
-                    <button class="switch-button" onclick="toggleSwitchUserModal()">Cancelar</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="posts">
             
-            <div id="userPosts"></div>
+            <div class="profile-main">
+                <div class="posts-section">
+                    <h3 class="section-title"><i class="fas fa-newspaper"></i> Tus publicaciones</h3>
+                    <div id="posts-container">
+                        <!-- Aquí se cargarán las publicaciones desde localStorage -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
+    
+    <!-- Modal de edición de perfil -->
+    <div class="edit-profile-modal" id="edit-profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Editar perfil</h2>
+                <button class="close-modal" id="close-modal">&times;</button>
+            </div>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" class="form-input" id="profile-name" value="María González">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nombre de usuario</label>
+                    <input type="text" class="form-input" id="profile-username" value="mariachef">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Biografía</label>
+                    <textarea class="form-textarea" id="profile-bio">Amante de la gastronomía mediterránea y experta en repostería. Explorando sabores desde 2015 y compartiendo mis descubrimientos culinarios.</textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="boton boton-secondary" id="cancel-edit">Cancelar</button>
+                    <button type="submit" class="boton boton-primary">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
     <script>
-        // Cargar perfil desde localStorage
-        function loadProfile(username) {
-            const profiles = JSON.parse(localStorage.getItem('allProfiles')) || {};
-            const profile = profiles[username] || {};
-
-            document.getElementById('username').textContent = profile.username || 'Nombre de Usuario';
-            document.getElementById('aboutMeDisplay').textContent = profile.aboutMe || 'Descripción breve sobre el usuario.';
-
-            // Cargar edad y ubicación
-            document.getElementById('ageDisplay').textContent = profile.age ? `Edad: ${profile.age}` : 'Edad: No especificada';
-            document.getElementById('locationDisplay').textContent = profile.location ? `Ubicación: ${profile.location}` : 'Ubicación: No especificada';
-
-            if (profile.profileImage) {
-                document.getElementById('profileImage').src = profile.profileImage;
-            }
-
-            if (profile.coverImage) {
-                document.getElementById('coverImage').src = profile.coverImage;
-            }
-
-            // Pre-llenar el formulario de edición
-            document.getElementById('newUsername').value = profile.username || '';
-            document.getElementById('userAge').value = profile.age || '';
-            document.getElementById('userLocation').value = profile.location || '';
-            document.getElementById('aboutMe').value = profile.aboutMe || '';
-
-            // Renombramos esta función para evitar el conflicto con el primer script
-            loadUserPostsInProfile(username);
-        }
-
-        // Cargar publicaciones del usuario (renombrada para evitar conflictos)
-        function loadUserPostsInProfile(username) {
-            const posts = JSON.parse(localStorage.getItem('posts')) || [];
-            const userPostsContainer = document.getElementById('userPosts');
-
-            if (userPostsContainer) {
-                userPostsContainer.innerHTML = ''; // Limpiar publicaciones actuales
-
-                // Ordenamos las publicaciones por timestamp (más recientes primero)
-                const sortedPosts = [...posts].sort((a, b) => (b.timestamp || b.id) - (a.timestamp || a.id));
-
-                sortedPosts.forEach(post => {
-                    // Usamos username para compatibilidad con ambos scripts
-                    if (post.username === username) {
-                        const postDiv = document.createElement('div');
-                        postDiv.classList.add('post');
-
-                        // Obtener perfil para mostrar imagen de perfil
-                        const profiles = JSON.parse(localStorage.getItem('allProfiles')) || {};
-                        const profile = profiles[username] || {};
-                        const profileImg = profile.profileImage || 'https://via.placeholder.com/40';
-
-                        // Usamos message || content para compatibilidad con ambos scripts
-                        // Usamos imageUrl || image para compatibilidad con ambos scripts
-                        const postContent = post.content || post.message || '';
-                        const postImage = post.image || post.imageUrl || '';
-                        const postTime = post.timestamp ? new Date(post.timestamp).toLocaleString() : 'Fecha desconocida';
-
-                        postDiv.innerHTML = `
-                                    <div class="post-header">
-                                        <img src="${profileImg}" alt="Foto de perfil">
-                                        <div class="post-header-info">
-                                            <h4 class="post-author">${post.username}</h4>
-                                            <p class="post-time">${postTime}</p>
-                                        </div>
-                                    </div>
-                                    <div class="post-content">
-                                        ${postContent}
-                                    </div>
-                                    ${postImage ? `<img src="${postImage}" alt="Imagen de publicación" class="post-image">` : ''}
-                                `;
-
-                        userPostsContainer.appendChild(postDiv);
-                    }
-                });
-            }
-        }
-
-        // Cargar archivo como URL base64
-        function loadFile(event, imageType) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function () {
-                if (imageType === 'profileImage') {
-                    document.getElementById('profileImage').src = reader.result;
-                } else if (imageType === 'coverImage') {
-                    document.getElementById('coverImage').src = reader.result;
-                }
-            }
-
-            if (file) {
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Guardar perfil en localStorage
-        function saveProfile() {
-            const username = document.getElementById('newUsername').value || document.getElementById('username').textContent;
-            const aboutMe = document.getElementById('aboutMe').value;
-            const age = document.getElementById('userAge').value;
-            const location = document.getElementById('userLocation').value;
-            const profileImage = document.getElementById('profileImage').src;
-            const coverImage = document.getElementById('coverImage').src;
-
-            const profiles = JSON.parse(localStorage.getItem('allProfiles')) || {};
-            profiles[username] = {
-                username: username,
-                aboutMe: aboutMe,
-                age: age,
-                location: location,
-                profileImage: profileImage,
-                coverImage: coverImage
-            };
-
-            localStorage.setItem('allProfiles', JSON.stringify(profiles));
-            loadProfile(username); // Actualizar la vista del perfil
-            toggleEditForm(); // Ocultar el formulario
-        }
-
-        // Cambiar de usuario
-        function switchUser() {
-            const newUsername = document.getElementById('switchUser').value;
-            if (newUsername) {
-                loadProfile(newUsername); // Cargar el nuevo perfil
-                toggleSwitchUserModal(); // Cerrar el modal
-            }
-        }
-
-        // Eliminar perfil
-        function deleteProfile() {
-            const username = document.getElementById('username').textContent;
-            const profiles = JSON.parse(localStorage.getItem('allProfiles')) || {};
-
-            if (profiles[username]) {
-                delete profiles[username]; // Eliminar el perfil actual
-                localStorage.setItem('allProfiles', JSON.stringify(profiles));
-                alert('Perfil eliminado. Puedes crear uno nuevo.');
-                loadProfile(''); // Cargar un perfil vacío o por defecto
-            }
-        }
-
-        // Mostrar u ocultar el formulario de edición
-        function toggleEditForm() {
-            const form = document.getElementById('editForm');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        }
-
-        // Mostrar u ocultar el modal de cambio de usuario
-        function toggleSwitchUserModal() {
-            const modal = document.getElementById('switchUserModal');
-            modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
-        }
-
-        // Cerrar modales si se hace clic fuera de ellos
-        window.onclick = function (event) {
-            const editForm = document.getElementById('editForm');
-            const switchUserModal = document.getElementById('switchUserModal');
-
-            if (event.target === editForm) {
-                editForm.style.display = "none";
-            }
-
-            if (event.target === switchUserModal) {
-                switchUserModal.style.display = "none";
-            }
-        }
-
-        // Cargar perfil al iniciar
-        document.addEventListener("DOMContentLoaded", function () {
-            loadProfile('Nombre de Usuario'); // Cargar el perfil por defecto al iniciar
+        // Función para abrir el modal de edición de perfil
+        document.getElementById('edit-profile-btn').addEventListener('click', function() {
+            document.getElementById('edit-profile-modal').style.display = 'flex';
         });
-
+        
+        // Función para cerrar el modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('edit-profile-modal').style.display = 'none';
+        });
+        
+        document.getElementById('cancel-edit').addEventListener('click', function() {
+            document.getElementById('edit-profile-modal').style.display = 'none';
+        });
+        
+        // Manejo del formulario
+        document.getElementById('profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener los valores del formulario
+            const name = document.getElementById('profile-name').value;
+            const username = document.getElementById('profile-username').value;
+            const bio = document.getElementById('profile-bio').value;
+            
+            // Actualizar el perfil
+            document.querySelector('.profile-name').textContent = name;
+            document.querySelector('.profile-username').textContent = '' + username;
+            document.querySelector('.profile-bio').textContent = bio;
+            
+            // Cerrar el modal
+            document.getElementById('edit-profile-modal').style.display = 'none';
+            
+            // Guardar en localStorage si se desea persistencia
+            localStorage.setItem('profileName', name);
+            localStorage.setItem('profileUsername', username);
+            localStorage.setItem('profileBio', bio);
+        });
+        
+        // Cargar publicaciones del localStorage
+        function loadPosts() {
+            const postsContainer = document.getElementById('posts-container');
+            let posts = JSON.parse(localStorage.getItem('userPosts')) || [];
+            
+            // Si no hay publicaciones en localStorage, cargamos datos de ejemplo
+            if (posts.length === 0) {
+                posts = [
+                    {
+                        id: 1,
+                        type: 'recipe',
+                        title: 'Paella Valenciana Tradicional',
+                        description: 'Hoy compartí mi receta favorita de paella valenciana tradicional. Un plato emblemático de la cocina española que todos deberían probar al menos una vez.',
+                        image: '/api/placeholder/600/400',
+                        date: '2025-03-28T12:35:00'
+                    },
+                    {
+                        id: 2,
+                        type: 'review',
+                        title: 'Restaurante El Olivo',
+                        description: 'Visité el nuevo restaurante El Olivo y quedé encantada con su propuesta gastronómica. El risotto de setas salvajes es simplemente espectacular.',
+                        image: '/api/placeholder/600/400',
+                        date: '2025-03-25T19:42:00'
+                    },
+                    {
+                        id: 3,
+                        type: 'collection',
+                        title: 'Postres para Ocasiones Especiales',
+                        description: 'Acabo de crear una nueva colección con mis mejores recetas de postres para esas ocasiones que merecen algo especial. ¡No olviden revisar mi tiramisú casero!',
+                        image: '/api/placeholder/600/400',
+                        date: '2025-03-23T15:20:00'
+                    }
+                ];
+                
+                // Guardar los datos de ejemplo en localStorage
+                localStorage.setItem('userPosts', JSON.stringify(posts));
+            }
+            
+            // Limpiar el contenedor de publicaciones
+            postsContainer.innerHTML = '';
+            
+            // Ordenar publicaciones por fecha (más recientes primero)
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Mostrar las publicaciones
+            posts.forEach(post => {
+                const postDate = new Date(post.date);
+                const today = new Date();
+                
+                // Calcular la diferencia en días
+                const diffTime = Math.abs(today - postDate);
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                
+                let timeStr;
+                if (diffDays === 0) {
+                    timeStr = 'Hoy';
+                } else if (diffDays === 1) {
+                    timeStr = 'Ayer';
+                } else if (diffDays < 7) {
+                    timeStr = `Hace ${diffDays} días`;
+                } else if (diffDays < 30) {
+                    const weeks = Math.floor(diffDays / 7);
+                    timeStr = `Hace ${weeks} ${weeks === 1 ? 'semana' : 'semanas'}`;
+                } else {
+                    const months = Math.floor(diffDays / 30);
+                    timeStr = `Hace ${months} ${months === 1 ? 'mes' : 'meses'}`;
+                }
+                
+                // Crear el elemento de publicación
+                const postElement = document.createElement('div');
+                postElement.className = 'post-item';
+                
+                // Determinar el icono según el tipo de publicación
+                let iconClass;
+                switch (post.type) {
+                    case 'recipe':
+                        iconClass = 'fas fa-utensils';
+                        break;
+                    case 'review':
+                        iconClass = 'fas fa-comment';
+                        break;
+                    case 'collection':
+                        iconClass = 'fas fa-bookmark';
+                        break;
+                    default:
+                        iconClass = 'fas fa-pen';
+                }
+                
+                postElement.innerHTML = `
+                    <div class="post-icon"><i class="${iconClass}"></i></div>
+                    <div class="post-info">
+                        <p class="post-text">${post.description}</p>
+                        <img src="${post.image}" alt="${post.title}" class="post-image">
+                        <p class="post-time">${timeStr}</p>
+                    </div>
+                `;
+                
+                postsContainer.appendChild(postElement);
+            });
+        }
+        
+        // Función para añadir una nueva publicación (para uso futuro)
+        function addPost(post) {
+            let posts = JSON.parse(localStorage.getItem('userPosts')) || [];
+            
+            // Generar ID único
+            const newId = posts.length > 0 ? Math.max(...posts.map(p => p.id)) + 1 : 1;
+            
+            // Añadir nueva publicación
+            posts.push({
+                id: newId,
+                date: new Date().toISOString(),
+                ...post
+            });
+            
+            // Guardar en localStorage
+            localStorage.setItem('userPosts', JSON.stringify(posts));
+            
+            // Recargar publicaciones
+            loadPosts();
+        }
+        // Cargar datos almacenados en localStorage cuando la página se carga
+window.addEventListener('DOMContentLoaded', function() {
+    // Cargar datos del perfil si existen
+    const name = localStorage.getItem('profileName');
+    const username = localStorage.getItem('profileUsername');
+    const bio = localStorage.getItem('profileBio');
+    const avatarUrl = localStorage.getItem('profileAvatar') || '/api/placeholder/150/150';
+    const coverUrl = localStorage.getItem('profileCover') || '/api/placeholder/1200/200';
+    
+    // Actualizar textos del perfil
+    if (name) document.querySelector('.profile-name').textContent = name;
+    if (username) document.querySelector('.profile-username').textContent = '' + username;
+    if (bio) document.querySelector('.profile-bio').textContent = bio;
+    
+    // Actualizar imágenes del perfil
+    document.querySelector('.profile-avatar').src = avatarUrl;
+    document.querySelector('.profile-cover').style.backgroundImage = `url('${coverUrl}')`;
+    
+    // Cargar publicaciones con imágenes actualizadas
+    loadPosts();
+    
+    // Actualizar las imágenes de perfil si se están usando placeholders
+    if (avatarUrl === '/api/placeholder/150/150' || coverUrl === '/api/placeholder/1200/200') {
+        // Usar imágenes de servicios externos para ejemplos variados
+        const newAvatarUrl = 'https://placehold.co/150x150/FFB74D/FFF?text=Chef';
+        const newCoverUrl = 'https://placehold.co/1200x200/FFA726/FFF?text=Cocina+Gourmet';
+        
+        // Actualizar en la página
+        document.querySelector('.profile-avatar').src = newAvatarUrl;
+        document.querySelector('.profile-cover').style.backgroundImage = `url('${newCoverUrl}')`;
+        
+        // Guardar en localStorage para futuras cargas
+        localStorage.setItem('profileAvatar', newAvatarUrl);
+        localStorage.setItem('profileCover', newCoverUrl);
+    }
+});
     </script>
-</div>
+</body>
 </html>

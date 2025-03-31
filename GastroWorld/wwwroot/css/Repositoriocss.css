@@ -1,84 +1,158 @@
-﻿.gastrotitle {
-    font: small-caps 100%/200% serif;
+﻿.fondo {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    background-image: url("https://lendan.com/wp-content/uploads/2019/01/influencia-alimentacion-piel.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 20px;
+    color: white;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
+/* Título elegante */
+.elegant-title {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: "Playfair Display", serif;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 15px 30px;
+    border-radius: 12px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+/* Contenedor de tarjetas */
 .Fcontainer {
     display: flex;
-    flex-wrap: wrap; /* Permite que se ajusten si no hay espacio */
-    justify-content: center; /* Centra los elementos */
-    gap: 10px; /* Espacio entre elementos */
-    fixed
-}
-
-.card__image {
-    width: 90%;
-    height: 90%;
-    object-fit: cover;
-    border-radius: 10px; /* Opcional, para esquinas redondeadas */
-}
-
-
-.card {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    background-color: gray;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    overflow: hidden;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    gap: 20px;
+    max-width: 1200px;
 }
 
-    .card svg {
-        width: 48px;
-        fill: #333;
-        transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-    }
+/* Tarjetas */
+.card {
+    background: #DEDEDE;
+    color: black;
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
 
     .card:hover {
-        transform: rotate(-5deg) scale(1.1);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05);
     }
 
-.card__content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
+.card__image {
     width: 100%;
-    height: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    background-color: #fff;
-    opacity: 0;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    height: 180px;
+    object-fit: cover;
 }
 
-.card:hover .card__content {
-    transform: translate(-50%, -50%) rotate(0deg);
-    opacity: 1;
+.card__content {
+    padding: 15px;
 }
 
 .card__title {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .card__description {
-    margin: 10px 0 0;
     font-size: 14px;
-    color: #777;
-    line-height: 1.4;
+    color: #555;
+    margin-bottom: 10px;
 }
 
-.card:hover svg {
-    scale: 0;
-    transform: rotate(-45deg);
+.card__link {
+    display: inline-block;
+    padding: 10px;
+    background: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s;
 }
+
+    .card__link:hover {
+        background: #c0392b;
+    }
+/* Estilos para barra de búsqueda y filtros */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#searchInput, #filterSelect {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+/* Estilos para la barra de búsqueda */
+#searchInput {
+    width: 60%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+    #searchInput:focus {
+        border-color: #ff7f50;
+        box-shadow: 0 0 8px rgba(255, 127, 80, 0.5);
+    }
+
+/* Estilos para el botón de filtro */
+#filterSelect {
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 25px;
+    background-color: #d4a373;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    #filterSelect:hover {
+        border-color: #ff7f50;
+    }
+
+/* Estilos para el contenedor de filtro */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el botón de búsqueda */
+.card__link {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    background-color: #ff7f50;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+    .card__link:hover {
+        background-color: #e76b3f;
+    }

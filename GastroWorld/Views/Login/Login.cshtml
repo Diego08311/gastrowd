@@ -1,24 +1,32 @@
 ﻿@{
     Layout = "_Layout";
 }
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Login Básico</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="~/css/login.css" rel="stylesheet" />
-    <style>
-
-    </style>
-<body >
-    <main class="content">
-    <div class="centrar">
-        <div class="login-container">
-            <div class="card-header">
-                <div class="text-header">Inicio sesion</div>
-            </div>
+<title>Login Básico</title>
+<style>
+    .fondo {
+        margin: 0;
+        padding: 0px;
+        height: 800px;
+        background-image: url("https://lendan.com/wp-content/uploads/2019/01/influencia-alimentacion-piel.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        z-index: 1;
+        padding: 20px;
+        color: black;
+    }
+</style>
+    <main class="fondo">
+    <div class="login-container">
+            <div class="text-header">Inicio sesión</div>
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="username">Usuarios:</label>
+                    <label for="username">Usuario:</label>
                     <input type="text" id="username" name="username" required>
                 </div>
                 <div class="form-group">
@@ -28,10 +36,9 @@
                 <button type="submit">Entrar</button>
                 <div>
                     <br />
-                    <a asp-area="" asp-controller="Registro" asp-action="Registro" class="letra">No tienes cuenta?Registrate</a>
+                    <a asp-area="" asp-controller="Registro" asp-action="Registro" class="letra">¿No tienes cuenta? ¡Regístrate!</a>
                 </div>
             </form>
-        </div>
     </div>
     </main>
     <script>
@@ -41,7 +48,7 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            const response = await fetch('/api/auth/login', {
+            const response = await fetch('/api/Login/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -70,7 +77,6 @@
                 });
             }
         });
-    </script>
 
-</body>
+    </script>
 

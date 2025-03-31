@@ -1,0 +1,85 @@
+﻿.contenedor {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    height: auto; /* 100% de la altura de la pantalla */
+    width: 100vw; /* 100% del ancho de la pantalla */
+}
+
+.card {
+    max-width: 800px;
+    height: 800px;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid transparent;
+}
+
+    .card a {
+        text-decoration: none
+    }
+
+.content {
+    padding: 2.0rem;
+}
+
+.title {
+    color: #111827;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+}
+
+.desc {
+    margin-top: 0.5rem;
+    color: black;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.action {
+    display: inline-flex;
+    margin-top: 1rem;
+    color: #ffffff;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    align-items: center;
+    gap: 0.25rem;
+    background-color: #2563EB;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+    .action span {
+        transition: .3s ease;
+    }
+
+    .action:hover span {
+        transform: translateX(4px);
+    }
+
+.fondo {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url("https://lendan.com/wp-content/uploads/2019/01/influencia-alimentacion-piel.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: 1;
+    padding: 20px;
+    color: black;
+}
+
+.image-container {
+    width: 100%;
+    height: 300px;
+}
+
+    .image-container img {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+    }

@@ -4,151 +4,127 @@
 @{
 }
 <link href="~/css/repositoriocss.css" rel="stylesheet" />
-<style>
-    .fondo {
-        margin: 0;
-        padding: 0;
-        height: 130vh;
-        background-image: url("https://lendan.com/wp-content/uploads/2019/01/influencia-alimentacion-piel.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        z-index: 1;
-        padding: 20px;
-        color: white;
-    }
-    .welcome {
-        font-size: 36px;
-        font-weight: bold;
-        color: #333;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        font-size:80px;
-        color:black;
-        background-color: white;
-        padding: 15px;
-        display: inline-block;
-    }
-</style>
-<div class="fondo">
-    <div class="gastrotitle">
-        <h1 class="welcome">Gastrocursos para principiantes</h1>
+    <div class="fondo">
+        <div class="gastrotitle">
+            <h1 class="elegant-title">GastroCursos: Arte y Técnica en la Cocina</h1>
+        </div>
+
+        <!-- Barra de búsqueda y filtro -->
+        <div class="filter-container">
+            <input type="text" id="searchInput" placeholder="Buscar curso..." onkeyup="filterCourses()">
+            <select id="filterSelect" onchange="filterCourses()">
+                <option value="all">Todos</option>
+                <option value="video">Videos</option>
+                <option value="playlist">Playlists</option>
+            </select>
+        </div>
+
+        <div class="Fcontainer">
+            <!-- Tarjetas de cursos -->
+            <div class="card">
+                <img src="tecnicascul.png" class="card__image" />
+                <div class="card__content">
+                    <h5 class="card__title">10 TÉCNICAS CULINARIAS QUE TODO COCINERO DEBE SABER</h5>
+                    <p class="card__description">Aprende las técnicas culinarias fundamentales.</p>
+                    <a href="https://www.youtube.com/watch?v=LAVzPdTEPvA" target="_blank" class="card__link video">Ver Video</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="tecnicasc1.png" class="card__image" />
+                <div class="card__content">
+                    <h5 class="card__title">Técnicas básicas de cocina - Clase 1</h5>
+                    <p class="card__description">Introducción a las técnicas básicas de cocina.</p>
+                    <a href="https://www.youtube.com/watch?v=j_8AvR3Hi0o" target="_blank" class="card__link video">Ver Video</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="cortes2.png" class="card__image" />
+                <div class="card__content">
+                    <h5 class="card__title">Técnicas culinarias básicas y profesionales de cortes</h5>
+                    <p class="card__description">Explora técnicas de corte y habilidades culinarias.</p>
+                    <a href="https://www.youtube.com/playlist?list=PLTG2ZKD8oNOk92mPrXdATqUg2hU7e9Cq4" target="_blank" class="card__link playlist">Ver Playlist</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="cocif.png" class="card__image" />
+                <div class="card__content">
+                    <h5 class="card__title">Técnicas BÁSICAS DE COCINA</h5>
+                    <p class="card__description">Habilidades imprescindibles para la cocina.</p>
+                    <a href="https://www.youtube.com/playlist?list=PLXckHXbyMt6_Y7Kggiv9BfVAVwhWHHobF" target="_blank" class="card__link playlist">Ver Playlist</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="cortes.png" class="card__image" />
+                <div class="card__content">
+                    <h5 class="card__title">Cómo Hacer un Asado Perfecto</h5>
+                    <p class="card__description">Secretos para un asado jugoso y lleno de sabor.</p>
+                    <a href="https://www.youtube.com/watch?v=Z7SwhTZ5tOM&t=1s" target="_blank" class="card__link video">Ver Video</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="trucos.png" class="card__image" />
+                <div class="card__content">
+                    <h5 class="card__title">Técnicas Avanzadas de Cocina</h5>
+                    <p class="card__description">Trucos y consejos para mejorar tus habilidades.</p>
+                    <a href="https://www.youtube.com/watch?v=7BljXvdvFKk" target="_blank" class="card__link video">Ver Video</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="repostre.png" class="card__image" />
+                <div class="card__content">
+                    <h5 class="card__title">Postres y Repostería</h5>
+                    <p class="card__description">Cómo hacer deliciosos postres profesionales.</p>
+                    <a href="https://www.youtube.com/playlist?list=PL9Q4j89QUgHXKF0uY5YQR-l7BuzMPwoiG" target="_blank" class="card__link playlist">Ver Playlist</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="pastel.png" class="card__image" />
+                <div class="card__content">
+                    <h5 class="card__title">Tarta de queso y chocolate</h5>
+                    <p class="card__description">Receta fácil para una tarta deliciosa.</p>
+                    <a href="https://www.youtube.com/watch?v=vX-xLI1UVEo" target="_blank" class="card__link video">Ver Video</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="pudin.png" class="card__image" />
+                <div class="card__content">
+                    <h5 class="card__title">Budín de caramelo japonés</h5>
+                    <p class="card__description">Aprende a hacer un delicioso budín japonés.</p>
+                    <a href="https://www.youtube.com/watch?v=XvI3xm-b0ao" target="_blank" class="card__link video">Ver Video</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="Fcontainer">
-        <div class="card">
-            <img src="~/imagenes/tecnicascul.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">10 TÉCNICAS CULINARIAS QUE TODO COCINERO DEBE SABER</h5>
-                <p class="card__description">Aprende las técnicas culinarias fundamentales que todo cocinero debe dominar.</p>
-                <a href="https://www.youtube.com/watch?v=LAVzPdTEPvA" target="_blank" class="card__link">Ver Video</a>
-            </div>
-        </div>
+    <script>
+        function filterCourses() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let filter = document.getElementById("filterSelect").value;
+            let cards = document.getElementsByClassName("card");
 
-        <div class="card">
-            <img src="~/imagenes/tecnicasc1.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">Técnicas básicas de cocina - Clase 1</h5>
-                <p class="card__description">Introducción a las técnicas básicas de cocina en esta primera clase.</p>
-                <a href="https://www.youtube.com/watch?v=j_8AvR3Hi0o" target="_blank" class="card__link">Ver Video</a>
-            </div>
-        </div>
+            for (let card of cards) {
+                let title = card.getElementsByClassName("card__title")[0].innerText.toLowerCase();
+                let button = card.getElementsByClassName("card__link")[0];
 
-        <div class="card">
-            <img src="~/imagenes/cortes2.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">Técnicas culinarias básicas y profesionales de cortes</h5>
-                <p class="card__description">Explora una serie de videos sobre técnicas de corte y habilidades culinarias.</p>
-                <a href="https://www.youtube.com/playlist?list=PLTG2ZKD8oNOk92mPrXdATqUg2hU7e9Cq4" target="_blank" class="card__link">Ver Playlist</a>
-            </div>
-        </div>
+                let isVideo = button.classList.contains("video");
+                let isPlaylist = button.classList.contains("playlist");
 
-        <div class="card">
-            <img src="~/imagenes/cocif.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">Técnicas BÁSICAS DE COCINA</h5>
-                <p class="card__description">Habilidades imprescindibles para desenvolverse en la cocina.</p>
-                <a href="https://www.youtube.com/playlist?list=PLXckHXbyMt6_Y7Kggiv9BfVAVwhWHHobF" target="_blank" class="card__link">Ver Playlist</a>
-            </div>
-        </div>
+                let matchesTitle = title.includes(input);
+                let matchesFilter = (filter === "all" || (filter === "video" && isVideo) || (filter === "playlist" && isPlaylist));
 
-        <div class="card">
-            <img src="~/imagenes/cortes.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">Cómo Hacer un Asado Perfecto</h5>
-                <p class="card__description">Aprende los secretos para un asado jugoso y lleno de sabor.</p>
-                <a href="https://www.youtube.com/watch?v=Z7SwhTZ5tOM&t=1s&ab_channel=FuegoLoco" target="_blank" class="card__link">Ver Video</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="~/imagenes/trucos.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">Técnicas Avanzadas de Cocina</h5>
-                <p class="card__description">Descubre trucos y consejos para mejorar tus habilidades culinarias.</p>
-                <a href="https://www.youtube.com/watch?v=7BljXvdvFKk&ab_channel=AlfredoVozmediano" target="_blank" class="card__link">Ver Video</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="~/imagenes/especias.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">Cocina Creativa</h5>
-                <p class="card__description">Aprende a innovar en la cocina con nuevas técnicas y recetas.</p>
-                <a href="https://www.youtube.com/watch?v=KcW-Dip4O4I&ab_channel=Diegodoal" target="_blank" class="card__link">Ver Video</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="~/imagenes/pancito.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">Técnicas de Cocción</h5>
-                <p class="card__description">Aprende sobre los diferentes métodos de cocción y cómo aplicarlos correctamente.</p>
-                <a href="https://www.youtube.com/watch?v=ybFR9eD_qDk&ab_channel=NeutronHr" target="_blank" class="card__link">Ver Video</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="~/imagenes/repostre.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">Postres y Repostería</h5>
-                <p class="card__description">Descubre cómo hacer deliciosos postres con técnicas profesionales.</p>
-                <a href="https://www.youtube.com/watch?v=WTJ6ZJiQ1Lk&list=PL9Q4j89QUgHXKF0uY5YQR-l7BuzMPwoiG&ab_channel=MarianelaCooking" target="_blank" class="card__link">Ver Playlist</a>
-            </div>
-        </div>
-
-
-
-        <div class="card">
-            <img src="~/imagenes/plays.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">Cocina Internacional</h5>
-                <p class="card__description">Explora técnicas y recetas de distintas partes del mundo con Chef Carlos Villacís.</p>
-                <a href="https://www.youtube.com/watch?v=wzXRY-bKMwg&list=PLLvnxdyjxncz1Zk-l7VfXIRsUk91kpg6E&ab_channel=ChefCarlosVillacis" target="_blank" class="card__link">Ver Playlist</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="~/imagenes/pastel.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">La tarta de queso y chocolate más decadente</h5>
-                <p class="card__description">
-                    Deléitese con la mejor tarta de queso de chocolate con una textura sedosa, un profundo sabor a chocolate y una corteza de galleta crujiente. ¡Esta receta es fácil de seguir y perfecta para cualquier ocasión!
-                </p>
-                <a href="https://www.youtube.com/watch?v=vX-xLI1UVEo&ab_channel=CookingAtHome" target="_blank" class="card__link">ver video</a>
-            </div>
-        </div>
-        <div class="card">
-            <img src="~/imagenes/pudin.png" class="card__image" />
-            <div class="card__content">
-                <h5 class="card__title">El mejor budín de caramelo japonés</h5>
-                <p class="card__description">
-                    Deléitese con la mejor tarta de queso de chocolate con una textura sedosa, un profundo sabor a chocolate y una corteza de galleta crujiente. ¡Esta receta es fácil de seguir y perfecta para cualquier ocasión!
-                </p>
-                <a href="https://www.youtube.com/watch?v=XvI3xm-b0ao&ab_channel=MoLaLaCook" target="_blank" class="card__link">ver video</a>
-            </div>
-        </div>
-
-    </div>
-
-</div>
+                if (matchesTitle && matchesFilter) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>

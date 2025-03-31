@@ -9,6 +9,6 @@ namespace GastroWorld.Models.IModel
         Task<bool> CreateUser(Usuarios usuario);
         Task<bool> UserExists(string usuario, string email);
 
-
+        // Nuevo método para obtener datos de sesión del usuario
     }
 }

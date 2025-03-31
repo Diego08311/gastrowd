@@ -1,59 +1,763 @@
-﻿body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+﻿/* Social Page Styles */
+.social-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 1.5rem;
+}
+
+.social-tab {
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: var(--transition);
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+    .social-tab:hover {
+        color: var(--color-primary);
+    }
+
+    .social-tab.active {
+        color: var(--color-primary);
+        border-bottom-color: var(--color-primary);
+    }
+
+.social-tab-content {
+    display: none;
+}
+
+    .social-tab-content.active {
+        display: block;
+    }
+
+.social-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: var(--color-background);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+}
+
+.social-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+}
+
+.user-info {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.post-time {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+}
+
+.post-options-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+}
+
+.post-content {
+    padding: 0 1rem 1rem;
+}
+
+.post-image {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+    .post-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.post-actions {
+    display: flex;
+    border-top: 1px solid var(--color-border);
+    padding: 0.75rem 1rem;
+}
+
+.post-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+    .post-action-btn:hover {
+        background-color: var(--color-secondary);
+    }
+
+    .post-action-btn.liked {
+        color: var(--color-primary);
+    }
+
+    .post-action-btn.disliked {
+        color: #f44336;
+    }
+
+    .post-action-btn.saved {
+        color: var(--color-primary);
+    }
+
+.save-btn {
+    margin-left: auto;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--color-text-light);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+}
+
+.social-sidebar {
+    display: none;
+}
+
+.sidebar-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: var(--color-background);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-title {
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.post-form {
+    padding: 1rem;
+}
+
+.post-form-header {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+    .post-form-header textarea {
+        flex: 1;
+        min-height: 100px;
+        padding: 0.75rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius);
+        resize: none;
+    }
+
+.post-form-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popular-chefs {
+    padding: 1rem;
+}
+
+.chef-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+    .chef-item:last-child {
+        border-bottom: none;
+    }
+
+.chef-info {
+    flex: 1;
+}
+
+.chef-name {
+    font-weight: 500;
+}
+
+.chef-followers {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+}
+
+.follow-btn.following {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.trending-topics {
+    padding: 1rem;
+}
+
+.trend-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+    .trend-item:last-child {
+        border-bottom: none;
+    }
+
+.trend-tag {
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+.trend-count {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+    .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .md\:col-span-2 {
+        grid-column: span 2 / span 2;
+    }
+
+    .social-sidebar {
+        display: block;
+    }
+}
+/* Estilos generales */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-h1, h2, h3 {
+.body {
+    background-color: #f8f9fa;
     color: #333;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+.contene {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
+.pyy-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.flexx-col {
+    flex-direction: column;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+.grid {
+    display: grid;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.tracking-tight {
+    letter-spacing: -0.025em;
+}
+
+.text-muted-foreground {
+    color: #666;
+}
+
+/* Estilos de las pestañas */
+.social-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+.social-tab {
+    padding: 0.5rem 1rem;
     border: none;
-    border-radius: 4px;
+    background: none;
+    font-weight: 500;
     cursor: pointer;
-    font-size: 16px;
+    color: #555;
+    position: relative;
 }
 
-.post {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-    .post img {
-        max-width: 100%;
-        height: auto;
+    .social-tab.active {
+        color: #0066cc;
     }
 
-.comment {
-    background-color: #f4f4f4;
-    padding: 10px;
-    margin-top: 10px;
+        .social-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #0066cc;
+        }
+
+.social-tab-content {
+    display: none;
 }
 
-.deleteButton {
-    color: red;
+    .social-tab-content.active {
+        display: block;
+    }
+
+/* Tarjetas sociales */
+.social-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.social-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.post-time {
+    font-size: 0.8125rem;
+    color: #666;
+}
+
+.post-options-btn {
+    background: none;
+    border: none;
+    color: #666;
     cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 50%;
+}
+
+    .post-options-btn:hover {
+        background-color: #f1f1f1;
+    }
+
+.post-content {
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.post-image {
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    .post-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid #eee;
+    padding-top: 0.75rem;
+}
+
+.post-action-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+    .post-action-btn:hover {
+        color: #333;
+    }
+
+    .post-action-btn.liked {
+        color: #0066cc;
+    }
+
+    .post-action-btn.disliked {
+        color: #cc0000;
+    }
+
+    .post-action-btn.saved {
+        color: #f59e0b;
+    }
+
+/* Sidebar */
+.social-sidebar {
+    position: sticky;
+    top: 1rem;
+}
+
+.sidebar-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+/* Formulario de publicación */
+.post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.post-form-header {
+    display: flex;
+    gap: 0.75rem;
+}
+
+    .post-form-header textarea {
+        flex: 1;
+        min-height: 80px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 0.75rem;
+        resize: none;
+        font-size: 0.875rem;
+    }
+
+        .post-form-header textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+
+.post-form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Chefs populares */
+.popular-chefs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.chef-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chef-info {
+    flex: 1;
+    margin-left: 0.75rem;
+}
+
+.chef-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.chef-followers {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.follow-btn.following {
+    background-color: #0066cc;
+    color: white;
+    border-color: #0066cc;
+}
+
+/* Tendencias culinarias */
+.trending-topics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.trend-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.trend-tag {
+    color: #0066cc;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+    .trend-tag:hover {
+        text-decoration: underline;
+    }
+
+.trend-count {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+/* Estado vacío */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+/* Comentarios */
+.comments-section {
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    display: none;
+}
+
+.comment {
+    display: flex;
+    margin-bottom: 8px;
+    padding: 8px 0;
+}
+
+.comment-content {
+    margin-left: 10px;
+    flex: 1;
+}
+
+.comment-author {
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.comment-text {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.comment-time {
+    font-size: 12px;
+    color: #666;
+}
+
+.comment-form {
+    display: flex;
+    margin-top: 10px;
+    gap: 8px;
+}
+
+.comment-input {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+    .comment-input:focus {
+        outline: none;
+        border-color: #0066cc;
+    }
+
+/* Toast notifications */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background-color: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    animation: fadeIn 0.3s, fadeOut 0.3s 3.7s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    max-width: 350px;
+}
+
+
+opacity: 0;
+transform: translateY(20px);
+}
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+}
+
+
+opacity: 1;
+transform: translateY(0);
+}
+
+to {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+}
+
+/* Selector de imágenes */
+.image-preview {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    display: none;
+}
+
+    .image-preview img {
+        max-height: 100px;
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+.image-preview-container {
+    position: relative;
+    display: inline-block;
+}
+
+.remove-image {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff4d4d;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Añadir estilos para el modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-body {
+    margin-bottom: 15px;
+}
+
+.modal-foot {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }

@@ -48,8 +48,8 @@ namespace GastroWorld.Controllers
                 nombre = model.Nombre,
                 usuario = model.Usuario,
                 email = model.Email,
-                password = model.Password, 
-                tipo_usuario = model.TipoUsuario,
+                password = model.Password,
+                tipo_usuario=model.TipoUsuario,
                 fecha_registro = System.DateTime.Now
             };
 

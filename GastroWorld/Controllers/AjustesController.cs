@@ -23,32 +23,28 @@ namespace GastroWorld.Controllers
         {
             return View();
         }
-        public IActionResult AjustesContext()
-        {
-            // Obtener el ID del usuario desde la sesión
-            int? idUsuario = _httpContextAccessor.HttpContext.Session.GetInt32("id_usuario");
+        //public IActionResult AjustesContext()
+        //{
+        //    // Obtener el ID del usuario desde la sesión
+        //    int? idUsuario = _httpContextAccessor.HttpContext.Session.GetInt32("id_usuario");
 
-            if (idUsuario == null)
-            {
-                return RedirectToAction("Login", "Login"); // Redirige si no hay sesión activa
-            }
+        //    if (idUsuario == null)
+        //    {
+        //        return RedirectToAction("Login", "Login"); // Redirige si no hay sesión activa
+        //    }
 
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.id_usuario == idUsuario);
-            return View(usuario);
-        }
+        //    var usuario = _context.Usuarios.FirstOrDefault(u => u.id_usuario == idUsuario);
+        //    return View(usuario);
+        //}
 
         [HttpPost]
         public IActionResult ActualizarUsuario(Usuarios usuario)
         {
             int? idUsuario = _httpContextAccessor.HttpContext.Session.GetInt32("id_usuario");
 
-            if (idUsuario == null)
-            {
-                return RedirectToAction("Login", "Login"); // Redirige si no hay sesión activa
-            }
-
             var usuarioExistente = _context.Usuarios.FirstOrDefault(u => u.id_usuario == idUsuario);
-            if (usuarioExistente != null)
+
+            if (usuarioExistente != null) 
             {
                 usuarioExistente.nombre = usuario.nombre;
                 usuarioExistente.email = usuario.email;

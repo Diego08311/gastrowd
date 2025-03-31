@@ -1,5 +1,6 @@
 ﻿using System.Security.Principal;
 using Gastroworld.Data;
+using GastroWorld.Middleware;
 using GastroWorld.Models;
 using GastroWorld.Models.IModel;
 using GastroWorld.Models.Model;
@@ -12,11 +13,22 @@ using Microsoft.Win32;
 //ConexionBd
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole(); // Añade logging a la consola
+builder.Logging.AddDebug();   // Añade logging para depuración
+builder.Logging.SetMinimumLevel(LogLevel.Trace);
+
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(); 
 builder.Services.AddAuthorization();
 builder.Services.AddControllersWithViews();
-builder.Services.AddSession(); // Habilita sesiones en la aplicación
+
+builder.Services.AddSession(options =>                              // Habilita sesiones en la aplicación
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});                                             
 builder.Services.AddHttpContextAccessor(); // Permite acceder al contexto HTTP
 
 
@@ -54,6 +66,8 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession(); // Activa sesiones en la aplicación
+app.UseMiddleware<VerificarSesionMiddleware>();
+
 
 
 app.MapControllerRoute(
